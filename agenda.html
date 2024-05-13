@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Médica Personalizável</title>
+    <style>
+        /* Estilos CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            background-color: #fff;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+        }
+        button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Agenda Médica Personalizável</h1>
+    
+    <div id="form">
+        <input type="text" id="nomeInput" placeholder="Nome">
+        <input type="text" id="telefoneInput" placeholder="Telefone">
+        <input type="text" id="procedimentoInput" placeholder="Procedimento">
+        <button onclick="adicionarPaciente()">Adicionar Paciente</button>
+    </div>
+    
+    <table id="agenda">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Procedimento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os pacientes serão adicionados aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Função para adicionar pacientes à agenda
+        function adicionarPaciente() {
+            var nomeInput = document.getElementById("nomeInput").value;
+            var telefoneInput = document.getElementById("telefoneInput").value;
+            var procedimentoInput = document.getElementById("procedimentoInput").value;
+
+            if (nomeInput.trim() !== "" && telefoneInput.trim() !== "" && procedimentoInput.trim() !== "") {
+                var tableBody = document.getElementById("agenda").getElementsByTagName("tbody")[0];
+                var newRow = tableBody.insertRow(tableBody.rows.length);
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                cell1.textContent = nomeInput;
+                cell2.textContent = telefoneInput;
+                cell3.textContent = procedimentoInput;
+
+                // Limpar campos após adicionar paciente
+                document.getElementById("nomeInput").value = "";
+                document.getElementById("telefoneInput").value = "";
+                document.getElementById("procedimentoInput").value = "";
+            } else {
+                alert("Por favor, preencha todos os campos.");
+            }
+        }
+    </script>
+
+</body>
+</html>
